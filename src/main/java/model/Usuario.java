@@ -7,6 +7,11 @@ public class Usuario {
 	private String nome;
 	
 	
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nome=" + nome + "]";
+	}
+	
 	public int getId() {
 		return id;
 	}
