@@ -5,6 +5,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 
+import javax.ejb.EJB;
+
+import org.dbunit.operation.DatabaseOperation;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,12 +23,13 @@ public class TestUsuarioRepository {
 	
 	private static final int ID_USUARIO_CONSULTA = 1;
 	private static final int ID_USUARIO_SEM_TWEET = 5;
-	
+
+	@EJB
 	private UsuarioRepository usuarioRepository;
 	
 	@Before
 	public void setUp() {
-		this.usuarioRepository = new UsuarioRepository();
+		DatabaseHelper.getInstance("andorinhaDS").execute("dataset/andorinha.xml", DatabaseOperation.CLEAN_INSERT);
 	}
 	
 	@Test

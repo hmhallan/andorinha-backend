@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.ejb.EJB;
+
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,15 +29,18 @@ public class TestComentarioRepository {
 	
 	private static final long DELTA_MILIS = 500;
 	
+	@EJB
 	private UsuarioRepository usuarioRepository;
+	
+	@EJB
 	private TweetRepository tweetRepository;
+	
+	@EJB
 	private ComentarioRepository comentarioRepository;
 	
 	@Before
 	public void setUp() {
-		this.usuarioRepository = new UsuarioRepository();
-		this.tweetRepository = new TweetRepository();
-		this.comentarioRepository = new ComentarioRepository();
+		DatabaseHelper.getInstance("andorinhaDS").execute("dataset/andorinha.xml", DatabaseOperation.CLEAN_INSERT);
 	}
 	
 	@Test

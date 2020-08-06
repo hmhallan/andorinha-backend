@@ -7,15 +7,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Stateless;
+
 import model.Usuario;
 import model.exceptions.ErroAoConectarNaBaseException;
 import model.exceptions.ErroAoConsultarBaseException;
 
+@Stateless
 public class UsuarioRepository extends AbstractCrudRepository {
 	
 	public void inserir(Usuario usuario) throws ErroAoConectarNaBaseException, ErroAoConsultarBaseException {
 		//abrir uma conexao com o banco
-		try (Connection c = this.abrirConexao()) {
+		try (Connection c = super.ds.getConnection()) {
 			
 			//proximo valor da sequence
 			int id = this.recuperarProximoValorDaSequence("seq_usuario");
