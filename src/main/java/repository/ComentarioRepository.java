@@ -17,6 +17,7 @@ import model.Tweet;
 import model.Usuario;
 import model.exceptions.ErroAoConectarNaBaseException;
 import model.exceptions.ErroAoConsultarBaseException;
+import model.seletor.ComentarioSeletor;
 
 @Stateless
 public class ComentarioRepository extends AbstractCrudRepository {
@@ -129,6 +130,20 @@ public class ComentarioRepository extends AbstractCrudRepository {
 		} catch (SQLException e) {
 			throw new ErroAoConsultarBaseException("Ocorreu um erro ao consultar o tweet", e);
 		}
+	}
+
+	public List<Comentario> pesquisar(ComentarioSeletor seletor) throws ErroAoConsultarBaseException, ErroAoConectarNaBaseException {
+	
+		//listar os comentarios, filtrando pelos campos do seletor
+
+		return null;
+	}
+
+	public Long contar(ComentarioSeletor seletor) throws ErroAoConsultarBaseException, ErroAoConectarNaBaseException {
+	
+		//listar os comentarios, filtrando pelos campos do seletor
+
+		return 0L;
 	}
 
 	public List<Comentario> listarTodos() throws ErroAoConsultarBaseException, ErroAoConectarNaBaseException {
