@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.transaction.RollbackException;
 
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.Before;
@@ -83,8 +84,7 @@ public class TestUsuarioRepository {
 	@Test
 	public void testa_remover_usuario_com_tweet() throws ErroAoConectarNaBaseException, ErroAoConsultarBaseException {
 		assertThatThrownBy(() -> { this.usuarioRepository.remover(ID_USUARIO_CONSULTA); })
-			.isInstanceOf(ErroAoConsultarBaseException.class)
-        	.hasMessageContaining("Ocorreu um erro ao remover o usuário");
+			.hasCauseInstanceOf(RollbackException.class);
 	}
 	
 	@Test
@@ -133,6 +133,18 @@ public class TestUsuarioRepository {
 							.hasSize(1)
 							.extracting("nome")
 							.containsExactly("Usuário 3");
+	}
+	
+	
+	@Test
+	public void testa_consultar_usuario_trazerndo_tweets() throws ErroAoConectarNaBaseException, ErroAoConsultarBaseException {
+		Usuario user = this.usuarioRepository.consultar(ID_USUARIO_CONSULTA);
+		
+		assertThat( user ).isNotNull();
+		assertThat( user.getNome() ).isEqualTo("Usuário 1");
+		assertThat( user.getId() ).isEqualTo(ID_USUARIO_CONSULTA);
+		
+		assertThat( user.getTweets() ).isNotNull().isNotEmpty();
 	}
 	
 
