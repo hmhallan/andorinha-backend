@@ -5,9 +5,6 @@ create table usuario (
 	constraint pk_usuario primary key(id)
 );
 
-create sequence seq_usuario start with 1 increment by 1;
-
-
 create table tweet (
 	id integer,
 	id_usuario integer,

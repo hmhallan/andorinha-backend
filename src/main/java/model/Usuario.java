@@ -25,8 +25,8 @@ public class Usuario {
 	@Column(name = "nome")
 	private String nome;
 	
-	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
-	List<Tweet> tweets;
+//	@OneToMany(mappedBy = "usuario", fetch = FetchType.EAGER)
+//	List<Tweet> tweets;
 	
 	
 	@Override
@@ -47,12 +47,12 @@ public class Usuario {
 		this.nome = nome;
 	}
 
-	public List<Tweet> getTweets() {
-		return tweets;
-	}
-
-	public void setTweets(List<Tweet> tweets) {
-		this.tweets = tweets;
-	}
+//	public List<Tweet> getTweets() {
+//		return tweets;
+//	}
+//
+//	public void setTweets(List<Tweet> tweets) {
+//		this.tweets = tweets;
+//	}
 
 }

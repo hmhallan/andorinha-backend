@@ -135,17 +135,5 @@ public class TestUsuarioRepository {
 							.containsExactly("Usuário 3");
 	}
 	
-	
-	@Test
-	public void testa_consultar_usuario_trazerndo_tweets() throws ErroAoConectarNaBaseException, ErroAoConsultarBaseException {
-		Usuario user = this.usuarioRepository.consultar(ID_USUARIO_CONSULTA);
-		
-		assertThat( user ).isNotNull();
-		assertThat( user.getNome() ).isEqualTo("Usuário 1");
-		assertThat( user.getId() ).isEqualTo(ID_USUARIO_CONSULTA);
-		
-		assertThat( user.getTweets() ).isNotNull().isNotEmpty();
-	}
-	
 
 }
