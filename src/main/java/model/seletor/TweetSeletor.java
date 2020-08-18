@@ -2,12 +2,20 @@ package model.seletor;
 
 import java.util.Calendar;
 
-public class TweetSeletor {
+import org.apache.commons.lang3.StringUtils;
+
+public class TweetSeletor extends AbstractBaseSeletor {
 	
 	private Integer id;
 	private String conteudo;
 	private Calendar data;
 	private Integer idUsuario;
+	
+	
+	public boolean possuiFiltro() {
+		return this.id != null || !StringUtils.isBlank(this.conteudo);
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -32,5 +40,6 @@ public class TweetSeletor {
 	public void setIdUsuario(Integer idUsuario) {
 		this.idUsuario = idUsuario;
 	}
+	
 
 }
