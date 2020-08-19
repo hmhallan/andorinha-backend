@@ -2,6 +2,7 @@ package service;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -11,9 +12,12 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.SecurityContext;
 
 import model.Tweet;
+import model.Usuario;
 import model.seletor.TweetSeletor;
 import repository.TweetRepository;
 
@@ -22,6 +26,9 @@ public class TweetService {
 
 	@EJB
 	private TweetRepository tweetRepository;
+	
+	@Context
+	private SecurityContext context;
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -33,6 +40,7 @@ public class TweetService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Tweet inserir(Tweet tweet) {
+		tweet.setUsuario( (Usuario)this.context.getUserPrincipal() );
 		this.tweetRepository.inserir(tweet);
 		return tweet;
 	}
