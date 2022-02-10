@@ -12,7 +12,7 @@
         <version.tomee>8.0.0-M2</version.tomee>
         <version.javaee-api>8.0</version.javaee-api>
         <version.cxf>3.2.7</version.cxf>
-        <version.hibernate>5.4.11.Final</version.hibernate>
+        <version.hibernate>5.4.24.Final</version.hibernate>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
     </properties>
